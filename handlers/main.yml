@@ -7,4 +7,4 @@
 
 - name: restart squid service
   sudo: yes
-  service: name=squid state=reloaded
+  service: name=squid state=reloaded enabled=yes
