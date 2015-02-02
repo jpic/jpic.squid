@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  roles:
+  - role: jpic.pacman
+    pacman_mirrors:
+    - http://arch.yourlabs.org/
+  - role: .

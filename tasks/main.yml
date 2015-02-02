@@ -1,0 +1,20 @@
+---
+
+- pacman: name=squid,polkit state=installed
+  sudo: yes
+  notify: restart squid
+
+- name: configure squid
+  sudo: yes
+  lineinfile: 
+    dest: '{{ squid_conf }}'
+    line: '{{ item }}'
+    regexp: '^{{ item.replace(" ", ".") }}'
+  with_items: squid_options
+  notify: 
+  - update cache
+  - restart squid
+  tags: line
+
+- service: name=squid enabled=yes state=started
+  sudo: yes
