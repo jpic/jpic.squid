@@ -1,9 +1,10 @@
 ---
 
-- name: update cache
+- name: restart squid
   shell: squid -zN
+  notify: restart squid service
   sudo: yes
 
-- name: restart squid
-  service: name=squid state=reloaded
+- name: restart squid service
   sudo: yes
+  service: name=squid state=reloaded
