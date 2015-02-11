@@ -6,10 +6,7 @@
 
 - name: configure squid
   sudo: yes
-  lineinfile: 
+  template:
+    src: squid.conf
     dest: '{{ squid_conf }}'
-    line: '{{ item }}'
-    regexp: '^{{ item.replace(" ", ".") }}'
-  with_items: squid_options
   notify: restart squid
-  tags: line

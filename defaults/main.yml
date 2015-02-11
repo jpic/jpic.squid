@@ -1,8 +1,19 @@
 ---
 
-squid_options:
-  - cache_dir ufs /var/cache/squid 20000 16 256
-  - cache_mem 512 MB
-  - maximum_object_size 512 MB
+squid_conf_max_stale: 1 month
+
+squid_cache_dirs:
+- type: ufs
+  path: /var/cache/squid
+  mbs: 20000
+
+squid_refresh_patterns: 
+- regexp: .
+  min: 10080
+  percent: 100%
+  max: 20080
+
+squid_cache_mem: 512 MB
+squid_maximum_object_size: 512 MB
 
 squid_conf: /etc/squid/squid.conf
